@@ -8,6 +8,7 @@ namespace ApiCubosSeguridad.Repositories
     public class RepositoryCubos
     {
         private CubosContext context;
+        private string BlobUrl = "https://storageaccountcubosamc.blob.core.windows.net/imagenescubos/";
         public RepositoryCubos(CubosContext context)
         {
             this.context = context;
@@ -27,7 +28,13 @@ namespace ApiCubosSeguridad.Repositories
 
         public async Task<List<Cubo>> GetCubosAsync()
         {
-            return await this.context.Cubos.ToListAsync();
+            List<Cubo> cubos = new List<Cubo>();
+            foreach (Cubo item in await this.context.Cubos.ToListAsync())
+            {
+                item.Imagen = BlobUrl + item.Imagen;
+                cubos.Add(item);
+            }
+            return cubos;
         }
 
         public async Task<List<Cubo>> GetCubosByMarcaAsync(string marca)

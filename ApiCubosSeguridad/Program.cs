@@ -3,6 +3,7 @@ using ApiCubosSeguridad.Helpers;
 using ApiCubosSeguridad.Repositories;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.EntityFrameworkCore;
+using Azure.Storage.Blobs;
 using Microsoft.Extensions.Azure;
 using Microsoft.OpenApi.Models;
 
